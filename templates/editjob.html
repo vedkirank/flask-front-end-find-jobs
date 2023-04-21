@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+ <div class="container col-md-10 border border-dark p-3" style="margin-top: 2em;">
+        <form method="POST" action="{{url_for('savejob',id=job.id)}}">
+            {{form.csrf_token}}
+            <div class="form-group">
+                {{ form.title.label(class="control-label") }}
+                {{ form.title(value=job.title, class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.salary.label(class="control-label") }}
+                {{ form.salary(value=job.salary, class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.category.label(class="control-label") }}
+                {{ form.category(value=job.category.id, class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.company.label(class="control-label") }}
+                {{ form.company(value=job.company, class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.email.label(class="control-label") }}
+                {{ form.email(value=job.email, class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.description.label(class="control-label") }}
+                {{ form.description(value=job.description, class="form-control") }}
+            </div>
+           <p>
+                {{form.submit(class='btn btn-primary')}}
+           </p>
+        </form>
+    </div>
+
+{% endblock content %}

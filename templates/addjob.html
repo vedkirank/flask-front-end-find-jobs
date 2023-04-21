@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+ <div class="container col-md-10 border border-dark p-3" style="margin-top: 2em;">
+        <form method="POST" action="{{url_for('addjob')}}">
+            {{form.csrf_token}}
+            <div class="form-group">
+                {{ form.title.label(class="control-label") }}
+                {{ form.title(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.salary.label(class="control-label") }}
+                {{ form.salary(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.category.label(class="control-label") }}
+                {{ form.category(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.company.label(class="control-label") }}
+                {{ form.company(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.email.label(class="control-label") }}
+                {{ form.email(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.description.label(class="control-label") }}
+                {{ form.description(class="form-control") }}
+            </div>
+           <p>{{form.submit(class='btn btn-primary')}}</p>
+        </form>
+    </div>
+
+{% endblock content %}

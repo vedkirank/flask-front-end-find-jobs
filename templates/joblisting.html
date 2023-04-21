@@ -1,0 +1,87 @@
+{% extends "base.html" %} {% block content %}
+
+<div>
+  <div class="container">
+    <div class="row pt-4">
+      <div class="col-md-3">
+      <div class="input-group mb-3">
+  <input type="text" class="form-control" id="search-field" placeholder="Search jobs">
+  <div class="input-group-append">
+    <a href="#" class="btn btn-primary" role="button" id="search-button">Search</a>
+  </div>
+</div>
+        <h5>Filter By Category</h5>
+        <ul class="list-group" id="category-filter">
+          <a
+            href="/joblisting"
+            class="list-group-item list-group-item-action active"
+            data-category="all"
+            >All Categories</a
+          >
+          <a
+            href="/jobs/1"
+            class="list-group-item list-group-item-action"
+            data-category="it"
+            >IT</a
+          >
+          <a
+            href="/jobs/2"
+            class="list-group-item list-group-item-action"
+            data-category="finance"
+            >Finance</a
+          >
+          <a
+            href="/jobs/3"
+            class="list-group-item list-group-item-action"
+            data-category="banking"
+            >Banking</a
+          >
+        </ul>
+      </div>
+      <div class="col-md-9">
+        <div id="accordion">
+          {% for job in joblist %}
+          <div class="card">
+            <div class="card-header">
+              <a class="card-link" href="/job/{{job.id}}"> {{job.title}} </a>
+            </div>
+            <div id="{{job.id}}" class="collapse show" data-parent="#accordion">
+              <div class="card-body">{{job.description}}</div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  /*const categoryLinks = document.querySelectorAll("#category-filter a");
+
+  categoryLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      categoryLinks.forEach((link) => {
+        link.classList.remove("active");
+      });
+
+      event.target.classList.add("active");
+
+    });
+  });*/
+
+  const searchField = document.getElementById("search-field");
+  const searchButton = document.getElementById("search-button");
+
+  searchButton.addEventListener("click", function() {
+    const searchQuery = searchField.value;
+    const searchUrl = '/jobs/'+searchQuery;
+    searchButton.href = searchUrl;
+  });
+
+
+</script>
+
+  {% endblock content %}
+</div>
