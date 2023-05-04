@@ -1,0 +1,91 @@
+{% extends "base.html" %} {% block content %}
+<div class="container pt-5">
+  <div class="row">
+    <div class="col-md-10">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{job.title}}</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <strong>Salary:</strong> {{job.salary}}
+          </li>
+          <li class="list-group-item">
+            <strong>Company:</strong>{{job.company}}
+          </li>
+          <li class="list-group-item">
+            <strong>Description:</strong>{{job.description}}
+          </li>
+          <li class="list-group-item"><strong>Email:</strong> {{job.email}}</li>
+          <li class="list-group-item">
+            <strong>Category:</strong> {{job.category.name}}
+          </li>
+        </ul>
+        {% if session['is_manager']%}
+        <div class="card-footer">
+          <a
+            href="#"
+            class="btn btn-danger float-right"
+            data-toggle="modal"
+            data-target="#confirm-modal"
+            >Delete</a
+          >
+          <a
+            href="{{url_for('main.editjob',id=job.id)}}"
+            class="btn btn-primary float-right"
+            style="margin-right: 1em"
+            >Edit</a
+          >
+        </div>
+
+        <!-- Confirmation modal -->
+        <div
+          class="modal fade"
+          id="confirm-modal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="confirm-modal-label"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="confirm-modal-label">
+                  Confirm Deletion
+                </h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Are you sure you want to delete this item?
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Cancel
+                </button>
+                <a
+                  href="{{url_for('main.deletejob',id=job.id)}}"
+                  class="btn btn-danger"
+                  >Delete</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
