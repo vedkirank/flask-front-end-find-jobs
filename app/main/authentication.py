@@ -49,5 +49,6 @@ def login():
 @main.route("/logout")
 def logout():
     session.clear()
+    flash('Logout Successful !')
     return redirect("/joblisting")
 

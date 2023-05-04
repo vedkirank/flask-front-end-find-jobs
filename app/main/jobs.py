@@ -116,6 +116,7 @@ def savejob(id):
         # Send the POST request to the API endpoint
         response = requests.patch('http://localhost:5001/edit-job',headers = {'Authorization': session.get("access_token"),'Content-Type': 'application/json'}, data=json.dumps(data))
         if response.status_code == 200 or response.status_code == 201:
+            flash('Joblisting updated !')
             return redirect("/joblisting")
         else:
             return 'Error Saving Job'
