@@ -18,7 +18,7 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="/joblisting"
+      <a class="navbar-brand" href="/"
         ><img
           class="logo"
           src="{{ url_for('static', filename='images/logo.jpeg') }}"
@@ -37,7 +37,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/joblisting">Home</a>
+            <a class="nav-link" href="/">Home</a>
           </li>
           {% if session['is_manager']%}
           <li class="nav-item">

@@ -31,14 +31,14 @@ def login():
             session['userid'] = response.json()['manager']['id']
             session['is_manager'] = True
             flash("Login successful")        
-            return redirect("/joblisting")
+            return redirect("/")
         else:
             session['access_token'] = response.json()['access_token']
             session['username'] = response.json()['user']['name']
             session['userid'] = response.json()['user']['id']
             session['is_manager'] = False
             flash("Login successful")        
-            return redirect("/joblisting")
+            return redirect("/")
     else:
         return render_template('login.html',form=loginform)
     #else:
@@ -50,5 +50,5 @@ def login():
 def logout():
     session.clear()
     flash('Logout Successful !')
-    return redirect("/joblisting")
+    return redirect("/")
 

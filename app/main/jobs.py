@@ -35,7 +35,7 @@ def addjob():
         # Send the POST request to the API endpoint
         response = requests.post('http://localhost:5001/create-job',headers = {'Authorization': session.get("access_token"),'Content-Type': 'application/json'}, data=json.dumps(data))
         if response.status_code == 200 or response.status_code == 201:
-            return redirect("/joblisting")
+            return redirect("/")
         else:
             return 'Error Submitting Job'
         #else:
@@ -45,7 +45,7 @@ def addjob():
 
 # Retrieval of job listings functionality goes here
 
-@main.route("/joblisting", methods=['GET'])
+@main.route("/", methods=['GET'])
 def joblisting():
     access_token=session.get('access_token')
     response = requests.get('http://localhost:5001/jobs',headers = {'Authorization': session.get("access_token")})
@@ -95,7 +95,7 @@ def deletejob(id):
     response = requests.delete('http://localhost:5001/delete-job?job_id='+id,headers = {'Authorization': session.get("access_token")})
     if response.status_code == 200 or response.status_code == 201:
         flash("Job deleted successfully")
-        return redirect("/joblisting")
+        return redirect("/")
 
 # Save job functionality goes here
 
@@ -117,7 +117,7 @@ def savejob(id):
         response = requests.patch('http://localhost:5001/edit-job',headers = {'Authorization': session.get("access_token"),'Content-Type': 'application/json'}, data=json.dumps(data))
         if response.status_code == 200 or response.status_code == 201:
             flash('Joblisting updated !')
-            return redirect("/joblisting")
+            return redirect("/")
         else:
             return 'Error Saving Job'
         #else:
