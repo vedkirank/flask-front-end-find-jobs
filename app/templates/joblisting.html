@@ -56,20 +56,35 @@
   </div>
 
 <script>
-  /*const categoryLinks = document.querySelectorAll("#category-filter a");
+  var path = window.location.pathname;
+  if(path && path !== '/'){
+    if(path.split('/').length > 0){
+      var category = path.split('/')[2];
+        // Get all the anchor tags in the category filter
+          var links = document.querySelectorAll('#category-filter a');
+          // Loop through the links and get the data-category attribute value
+          for (var i = 0; i < links.length; i++) {
+            var link = links[i];
+            if(link.classList.contains('active')){
+              link.classList.remove('active')
+            }
+            if(category === '1' && link.getAttribute('data-category') === 'it'){
+              link.classList.add('active');
+              break;
+            }else if(category === '2' && link.getAttribute('data-category') === 'finance'){
+              link.classList.add('active');
+              break;
+            }else if(category === '3' && link.getAttribute('data-category') === 'banking'){
+              link.classList.add('active');
+              break;
+            }
+          }
+    }
 
-  categoryLinks.forEach((link) => {
-    link.addEventListener("click", (event) => {
-      event.preventDefault();
-
-      categoryLinks.forEach((link) => {
-        link.classList.remove("active");
-      });
-
-      event.target.classList.add("active");
-
-    });
-  });*/
+  }else{
+    var links = document.querySelectorAll('#category-filter a');
+    links[0].classList.add('active');
+  }
 
   const searchField = document.getElementById("search-field");
   const searchButton = document.getElementById("search-button");
